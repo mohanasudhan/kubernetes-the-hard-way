@@ -1,0 +1,4 @@
+# kubectl create serviceaccount dashboard-sa
+# get token from -- kubectl describe serviceaccount dashboard-sa
+# use token to authenticate to kube API
+# internally it creates secrets object

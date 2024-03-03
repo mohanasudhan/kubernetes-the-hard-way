@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp-pod
+spec:
+  serviceAccountName: dashboard-sa # here we are using service account that we created
+  automountServiceAccountToken: false # if not set to false, it will mount default service token for accessing API server (note that will be limited)
+  securityContext: # can be moved to container section as well
+    runAsUser: 1000
+    capabilities:
+      add: ["MAC_ADMIN"]
+  tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "blue"
+      effect: "NoSchedule"
+  containers:
+    - name: nginx-container
+      image: nginx
+      args: ["10"] # not needed, you can add arg like this as needed (Entrypoint in )
+      env:
+        - name: APP_COLOR
+          value: pink
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "128Mi"
+          cpu: "500m" 

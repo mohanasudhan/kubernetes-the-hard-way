@@ -1,0 +1,5 @@
+# kubectl taint nodes node-name key=value:taint-effect
+# taint-effect = NoSchedule | PreferNoSchedule | NoExecute
+
+# untaint
+# kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
