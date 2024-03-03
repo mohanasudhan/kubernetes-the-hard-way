@@ -1,0 +1,16 @@
+# deploy new version in the side and send % of traffic to new
+# you can have minimum number of pod in the new version, so the traffic is small
+# wait for it to be successful, 
+# then proceed the update (rolling or blue/green)
+
+# service mesh helps in controlling the traffic
+# it uses selector logic to send traffic to both version for time being.
+
+# manual commands
+# kubectl scale deployment --replicas=1 frontend-v2
+
+#controlplane ~ ➜  kubectl scale deployment --replicas=0 frontend
+#deployment.apps/frontend scaled
+
+#controlplane ~ ➜  kubectl scale deployment --replicas=5 frontend-v2
+#deployment.apps/frontend-v2 scaled

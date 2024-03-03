@@ -3,7 +3,10 @@ kind: Pod
 metadata:
   name: myapp-pod
   labels:
-    app: myapp-pod
+    app: myapp-pod # kubectl get pods --selector app=App1 (e.g. kubectl get pods --selector bu=finance
+                   # kubectl get pods --selector env=prod,bu=finance,tier=frontend
+  annotations:
+    buildversion: "1.34" # annotations are used for integration purpose
 spec:
   containers:
     - name: nginx-container
