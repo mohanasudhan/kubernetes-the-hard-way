@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: ClusterIP # it is the default type
+  selector: # used to select the pods
+    app: myapp
+  ports: # NodePort
+  - port: 80 # if not specificed then targetPort is used
+    targetPort: 80 # port of backend exposed

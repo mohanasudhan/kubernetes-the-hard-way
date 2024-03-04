@@ -1,0 +1,8 @@
+# used to define nginx configuration in config-map.yaml so you can control the configuration 
+# as a different resource
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-configuration
+data:
+  key: value
