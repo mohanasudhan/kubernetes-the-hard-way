@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy # we only want to limit traffic to DB pod
+metadata:
+  name: db-policy
+spec: 
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - podSelector: # it is and connection i.e., podSelector and namespaceSelector
+          matchLabels:
+            name: api-pod
+        namespaceSelector: # if you want or then use - before namespaceSelector
+          matchLabels:
+            name: prod
+      - ipBlock: # ipBlock is an or logic
+          cidr: 192.168.5.10/32
+      ports:
+      - protocol: TCP
+        port: 3306
+  egress:
+    - to:
+      - ipBlock: 
+          cidr: 192.168.5.10/32
+      ports:
+      - protocol: TCP
+        port: 3306
