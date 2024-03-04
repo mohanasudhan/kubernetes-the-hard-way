@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp
+spec:
+  type: NodePort
+  selector: # used to select the pods
+    app: myapp
+  ports: # NodePort
+  - port: 80 # if not specificed then targetPort is used
+    targetPort: 80 
+    nodePort: 30008 # if not provided then automatically one picked in the range of 30000-32767
