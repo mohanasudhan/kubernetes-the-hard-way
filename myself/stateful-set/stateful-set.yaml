@@ -23,7 +23,9 @@ spec:
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
-  volumeClaimTemplates:
+      # only required only for deployment if you want to subdomain: mysql-h  it uses this subdomain
+      # hostname: mysql-pod # it uses this subdomain
+  volumeClaimTemplates: # when you want to have different volume for each pod
   - metadata:
       name: www
     spec:
