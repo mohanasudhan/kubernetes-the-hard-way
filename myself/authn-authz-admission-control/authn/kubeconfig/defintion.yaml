@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Config # kubectl config view 
+current-context: my-kube-admin@my-kube-playground # to change kubectl config user-context prod-user@production
+# kubectl config --kubeconfig=/root/my-kube-config current-context (diffent file)
+clusters:
+- name: my-kube-playground
+  clusters: 
+    certificate-authority: ca.crt 
+    # certificate-authority-data: to send actual ca data in base64
+    server: https://my-kube-playground:6443
+
+contexts: # marriage between cluster and user
+- name: my-kube-admin@my-kube-playground
+  context:
+    cluster:
+    user:
+    namespace:
+
+users:
+- name: my-kube-admin
+  user:
+    client-certificate: admin.crt
+    client-key: admin.key
+

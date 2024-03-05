@@ -1,0 +1,1 @@
+kubectl describe pod kube-apiserver-controlplane -n kube-system (to verify the kubeapi config)

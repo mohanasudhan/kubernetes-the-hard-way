@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding # kubectl get rolebindings or kubectl describe rolebinding <name>
+metadata:
+  name: devuser-developer-binding
+subjects:
+- kind: User
+  name: dev-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
+
+# if the user want to check their permission
+# kubectl auth can-i create deployments
+# yes
+# kubectl auth can-i delete nodes
+# no
+
+
+# kubectl auth can-i create deployments --as dev-user (if the admin want to verify the permission of a user)
