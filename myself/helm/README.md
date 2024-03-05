@@ -32,8 +32,8 @@ helm search hub wordpress -> does search in default
 But there are other repos as well
 
 helm repo add bitnami https://charts.bitnami.com/bitnami
-you can list repo
-helm list repo
+helm search repo joomla 
+helm repo list
 
 # installation
 helm install [release-name] [chart-name]
