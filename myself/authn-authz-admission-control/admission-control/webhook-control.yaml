@@ -1,0 +1,19 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: "pod-policy.example.com"
+
+webhooks:
+- name: "pod-policy.example.com"
+  clientConfig:
+    # url: "https://external.as.com" external webhook
+    service: # internally deployed in k8s
+      namespace: "webhook-namespace"
+      name: "webhook-service"
+    caBundle: "Caewe"
+  rules: # when to call this admission control
+    - apiGroups: [""]
+      apiVersion: ["v1"]
+      operations: ["CREATE"]
+      resources:  ["pods"]
+      scope:       "Namespaced"
