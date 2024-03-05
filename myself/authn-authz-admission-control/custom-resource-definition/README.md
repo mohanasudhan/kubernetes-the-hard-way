@@ -6,3 +6,7 @@ Above is customController
 1. First define the resource (CRD - custom resource defintion)
 2. create a custom controller (monitor, does some work and update)
 e.g. kubernetes/sample-controller
+
+go build -o sample-controller .
+
+./sample-controller -kubeconfig=$Home/.kube/config (build it a container, put it in pod, then create deployment)
